@@ -6,6 +6,7 @@ const resources = {
     crossFill: require('@/assets/icons/cross-fill.png'),
     info: require('@/assets/icons/info.png'),
     warning: require('@/assets/icons/warning.png'),
+    angleLeft: require('@/assets/icons/angle-left.png')
   },
 };
 

@@ -1,4 +1,4 @@
-import React, { useId } from 'react';
+import React from 'react';
 import {
   ColorValue,
   Modal,
@@ -48,7 +48,6 @@ const statusIconMapping = {
 };
 
 const BasicModal = (props: modalProps) => {
-  const uniqueID = useId();
 
   const {
     animationType = 'fade',
@@ -73,8 +72,6 @@ const BasicModal = (props: modalProps) => {
 
   return (
     <Modal
-      testID={uniqueID}
-      accessibilityLabel={uniqueID}
       visible={visible}
       animationType={animationType}
       hardwareAccelerated

@@ -1,4 +1,3 @@
-import { useId } from 'react';
 import { ColorValue, StyleProp, StyleSheet, Text, TextStyle } from 'react-native';
 
 type textProps = {
@@ -24,12 +23,8 @@ const TextWrapper = (props: textProps) => {
     selectionColor,
   } = props;
 
-  const uniqueID = useId()
-
   return (
     <Text
-      testID={uniqueID}
-      accessibilityLabel={uniqueID}
       style={[styles.textStyle, style]}
       onPress={onPress}
       dataDetectorType={dataDetectorType}

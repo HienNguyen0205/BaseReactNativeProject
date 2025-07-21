@@ -1,4 +1,4 @@
-import { NavigationContainer } from '@react-navigation/native';
+import { NavigationContainer, useNavigationContainerRef } from '@react-navigation/native';
 import { RootStack } from '@/navigation';
 import { Provider } from 'react-redux';
 import { store, persistor } from '@/storage/store';
@@ -10,7 +10,8 @@ import { PersistGate } from 'redux-persist/integration/react';
 import ToastManager from 'toastify-react-native/components/ToastManager';
 import { requestNotifications } from 'react-native-permissions';
 import { useEffect } from 'react';
-import { Platform } from 'react-native';
+import { Platform, StatusBar } from 'react-native';
+import { useLogger } from '@react-navigation/devtools';
 
 if(__DEV__){
   require('~/ReactotronConfig')
@@ -18,9 +19,13 @@ if(__DEV__){
 
 function App() {
 
+  const navigationRef = useNavigationContainerRef();
+
   useEffect(() => {
     requestPermission()
   }, [])
+
+  useLogger(navigationRef);
 
   const requestPermission = async () => {
     await requestNotifications(
@@ -40,8 +45,9 @@ function App() {
       <PersistGate loading={null} persistor={persistor}>
         <GestureHandlerRootView>
           <SafeAreaProvider>
-            <ToastManager showCloseIcon={false} showProgressBar={false}/>
-            <NavigationContainer>
+            <StatusBar networkActivityIndicatorVisible barStyle='dark-content'/>
+            <ToastManager showCloseIcon={false} showProgressBar={false} />
+            <NavigationContainer ref={navigationRef}>
               <BottomSheetModalProvider>
                 <RootStack />
               </BottomSheetModalProvider>

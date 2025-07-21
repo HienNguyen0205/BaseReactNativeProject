@@ -1,4 +1,4 @@
-import React, { ReactNode, useId } from 'react';
+import React, { ReactNode } from 'react';
 import { StyleSheet, TouchableOpacity, View } from 'react-native';
 import type { StyleProp, TextStyle, ViewStyle } from 'react-native';
 import { TextWrapper } from '@/components';
@@ -26,12 +26,8 @@ const BasicButton = (props: buttonProps) => {
       textStyle,
     } = props;
 
-    const uniqueID = useId()
-
     return (
       <TouchableOpacity
-        testID={uniqueID}
-        accessibilityLabel={uniqueID}
         style={[styles.container, style]}
         onPress={onPress}
         disabled={disable}
@@ -41,7 +37,7 @@ const BasicButton = (props: buttonProps) => {
             {renderLeftIcon()}
           </View>
         )}
-        <TextWrapper style={[styles.text,textStyle]}>{children}</TextWrapper>
+        <TextWrapper style={[styles.text, textStyle]}>{children}</TextWrapper>
       </TouchableOpacity>
     );
 }
